@@ -32,9 +32,11 @@ public interface GoodsMapper {
     //数目查询
     @Select("select count(*) from tb_goods")
     int selectTotalCount();
+
     //分页条件查询
     @ResultMap("goodsResultMap")
     List<Goods> selectByPageAndCondition(@Param("begin") int begin,@Param("size") int size,@Param("goods") Goods goods);
+
     //数目查询
     int selectTotalCountByCondition(Goods goods);
 }

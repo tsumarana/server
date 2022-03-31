@@ -34,15 +34,19 @@ public class GenerateToken {
         if(token == null || token.equals("null")) {
             System.out.println("token 为NULL");
         }else {
-            Jws<Claims> claimsJws = jwtParser.setSigningKey(signature).parseClaimsJws(token);
-            Claims body = claimsJws.getBody();
-            String username = String.valueOf(body.get("username"));
-            long time = body.getExpiration().getTime();
-            long nowTime = new Date().getTime();
-            if(nowTime - time < 0){
-                if(username != null) {
-                    return username;
+            try {
+                Jws<Claims> claimsJws = jwtParser.setSigningKey(signature).parseClaimsJws(token);
+                Claims body = claimsJws.getBody();
+                String username = String.valueOf(body.get("username"));
+                long time = body.getExpiration().getTime();
+                long nowTime = new Date().getTime();
+                if (nowTime - time < 0) {
+                    if (username != null) {
+                        return username;
+                    }
                 }
+            }catch (Exception e){
+                System.out.println("校验出错");
             }
         }
         System.out.println("verify 为空");

@@ -17,12 +17,11 @@ public interface UserMapper {
     User selectUserByUserInfo(User user);
     void insertUser(User user);
 
-    @ResultMap("userResultMap")
-    @Select("select * from tb_user limit #{begin}, #{size}")
-    List<User> selectUserByPage(@Param("begin") int begin, @Param("size") int size);
 
-    @Select("select count(*) from tb_user")
-    int selectTotalCount();
+    List<User> selectUserByPage(@Param("user") User user,@Param("begin") int begin, @Param("size") int size);
+
+    @ResultMap("userResultMap")
+    int selectTotalCount(User user);
 
     @Delete("delete from tb_user where id = #{id} ")
     void deleteById(User user);

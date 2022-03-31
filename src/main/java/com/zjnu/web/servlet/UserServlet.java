@@ -50,6 +50,7 @@ public class UserServlet extends BaseServlet{
         String s = JSON.toJSONString(loginBean);
         resp.getWriter().write(s);
     }
+    //检查token
     public void checkToken(HttpServletRequest req,HttpServletResponse resp) throws IOException{
         req.setCharacterEncoding("utf-8");
         String token = req.getHeader("Authorization");
@@ -101,7 +102,11 @@ public class UserServlet extends BaseServlet{
         String _pageSize = req.getParameter("pageSize");
         int currentPage = Integer.parseInt(_currentPage);
         int pageSize = Integer.parseInt(_pageSize);
-        PageBean<User> pageBean = userService.selectUserByPage(currentPage, pageSize);
+        req.setCharacterEncoding("utf-8");
+        String s = req.getReader().readLine();
+        User user = JSON.parseObject(s, User.class);
+
+        PageBean<User> pageBean = userService.selectUserByPage(user,currentPage, pageSize);
         //转为JSON
         String jsonString = JSON.toJSONString(pageBean);
         //写数据

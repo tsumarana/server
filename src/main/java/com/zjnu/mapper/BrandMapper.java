@@ -28,4 +28,6 @@ public interface BrandMapper {
     List<Brand> selectByPageAndCondition(@Param("begin") int begin,@Param("size") int size,@Param("brand") Brand brand);
     //数目查询
     int selectTotalCountByCondition(Brand brand);
+
+
 }

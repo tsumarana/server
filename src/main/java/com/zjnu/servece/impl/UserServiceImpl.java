@@ -51,15 +51,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageBean<User> selectUserByPage(int currentPage, int pageSize) {
+    public PageBean<User> selectUserByPage(User user,int currentPage, int pageSize) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 
         int begin = (currentPage - 1) * pageSize;
         int size = pageSize;
-
-        List<User> users = mapper.selectUserByPage(begin, size);
-        int count = mapper.selectTotalCount();
+        String username = user.getUsername();
+        if(username != null && username.length() > 0){
+            user.setUsername("%"+username+"%");
+        }
+        String email = user.getEmail();
+        if(email != null && email.length() > 0){
+            user.setEmail("%"+email+"%");
+        }
+        String idCard = user.getIdCard();
+        if(idCard != null && idCard.length()>0){
+            user.setIdCard("%"+idCard+"%");
+        }
+        String name = user.getName();
+        if(name != null && name.length()>0){
+            user.setName("%"+name+"%");
+        }
+        List<User> users = mapper.selectUserByPage(user,begin, size);
+        int count = mapper.selectTotalCount(user);
         PageBean<User> pageBean= new PageBean<User>();
         pageBean.setTotalCount(count);
         pageBean.setRows(users);

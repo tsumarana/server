@@ -10,6 +10,11 @@
         <result property="idCard" column="id_card"></result>
     </resultMap>
 
+    <resultMap id="countResultMap"  type="com.zjnu.pojo.User" >
+        <result property="username" column="user_name"></result>
+        <result property="idCard" column="id_card"></result>
+    </resultMap>
+
     <select id="selectAll" resultMap="userResultMap">
         select * from tb_user;
     </select>
@@ -29,6 +34,41 @@
         update tb_user set email = #{email},phone = #{phone},id_card = #{idCard},name = #{name} where id = #{id};
     </update>
 
+    <select id="selectUserByPage" resultMap="userResultMap">
+        select * from tb_user
+        <where>
+            <if test="user.username !=null and user.username !=''">
+                and user_name like #{user.username}
+            </if>
+            <if test="user.email !=null and user.email !=''">
+                and email like #{user.email}
+            </if>
+            <if test="user.idCard !=null and user.idCard !=''">
+                and id_card like #{user.idCard}
+            </if>
+            <if test="user.name !=null and user.name !=''">
+                and name like #{user.name}
+            </if>
+        </where>
+        limit #{begin},#{size}
+    </select>
+    <select id="selectTotalCount"  resultMap="userResultMap">
+        select count(*) from tb_user
+        <where>
+            <if test="username !=null and username !=''">
+                and user_name like #{username}
+            </if>
+            <if test="email !=null and email !=''">
+                and email like #{email}
+            </if>
+            <if test="idCard !=null and idCard !=''">
+                and id_card like #{idCard}
+            </if>
+            <if test="name !=null and name !=''">
+                and name like #{name}
+            </if>
+        </where>
+    </select>
     <insert id="insertUser" >
         insert into tb_user (user_name,password,email,phone,id_card,name,vip) values (#{username},#{password},#{email},#{phone},#{idCard},#{name},'0');
     </insert>

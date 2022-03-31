@@ -8,7 +8,7 @@ public interface UserService {
     User selectUserByUserInfo(User user);
     void insertUser(User user);
     void deleteByID(User user);
-    PageBean<User> selectUserByPage(int currentPage, int pageSize);
+    PageBean<User> selectUserByPage(User user,int currentPage, int pageSize);
     User selectUserById(User user);
     User selectUserByUsername(User user);
     void alterUserInfo(User user);
