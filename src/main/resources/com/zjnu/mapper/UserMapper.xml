@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zjnu.mapper.UserMapper">
+
+    <resultMap id="userResultMap" type="com.zjnu.pojo.User">
+        <result property="username" column="user_name"></result>
+        <result property="idCard" column="id_card"></result>
+    </resultMap>
+
+    <select id="selectAll" resultMap="userResultMap">
+        select * from tb_user;
+    </select>
+
+    <select id="selectUser" resultMap="userResultMap" >
+        select * from tb_user where user_name = #{username} and password = #{password};
+    </select>
+
+    <select id="selectByUsername" resultMap="userResultMap">
+        select img,user_name from tb_user where user_name= #{username};
+    </select>
+    <select id="selectUserByUserInfo" resultMap="userResultMap">
+        select * from tb_user where user_name = #{username} or id_card = #{idCard} or phone = #{phone};
+    </select>
+
+    <update id="alterUserInfo" >
+        update tb_user set email = #{email},phone = #{phone},id_card = #{idCard},name = #{name} where id = #{id};
+    </update>
+    <insert id="insertUser" >
+        insert into tb_user (user_name,password,email,phone,id_card,name,vip) values (#{username},#{password},#{email},#{phone},#{idCard},#{name},'0');
+    </insert>
+</mapper>

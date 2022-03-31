@@ -1,0 +1,8 @@
+com\zjnu\servece\impl\MessageServiceImpl.class
+com\zjnu\servece\MessageService.class
+com\zjnu\web\servlet\AuthorizationServlet.class
+com\zjnu\util\GenerateToken.class
+com\zjnu\pojo\LoginBean.class
+com\zjnu\web\servlet\MessageServlet.class
+com\zjnu\mapper\MessageMapper.class
+com\zjnu\pojo\Verify.class
