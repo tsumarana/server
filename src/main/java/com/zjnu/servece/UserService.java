@@ -12,4 +12,6 @@ public interface UserService {
     User selectUserById(User user);
     User selectUserByUsername(User user);
     void alterUserInfo(User user);
+    void addToken(User user);
+    User selectTokenByUsername(User user);
 }

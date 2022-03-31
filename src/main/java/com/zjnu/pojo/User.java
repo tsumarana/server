@@ -10,28 +10,7 @@ public class User {
     private String name;
     private String vip;
     private String img;
-    public User() {
-    }
-
-    public User(Integer id, String username, String password, String email, String phone, String idCard, String name, String vip, String img) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phone = phone;
-        this.idCard = idCard;
-        this.name = name;
-        this.vip = vip;
-        this.img = img;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
+    private String token;
 
     @Override
     public String toString() {
@@ -45,7 +24,40 @@ public class User {
                 ", name='" + name + '\'' +
                 ", vip='" + vip + '\'' +
                 ", img='" + img + '\'' +
+                ", token='" + token + '\'' +
                 '}';
+    }
+
+    public User() {
+    }
+
+    public User(Integer id, String username, String password, String email, String phone, String idCard, String name, String vip, String img, String token) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.idCard = idCard;
+        this.name = name;
+        this.vip = vip;
+        this.img = img;
+        this.token = token;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getVip() {

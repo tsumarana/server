@@ -94,4 +94,21 @@ public class UserServiceImpl implements UserService {
         sqlSession.commit();
         sqlSession.close();
     }
+
+    @Override
+    public void addToken(User user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        mapper.addToken(user);
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Override
+    public User selectTokenByUsername(User user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User user1 = mapper.selectTokenByUsername(user);
+        return user1;
+    }
 }

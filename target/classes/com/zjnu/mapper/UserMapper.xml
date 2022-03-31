@@ -28,7 +28,13 @@
     <update id="alterUserInfo" >
         update tb_user set email = #{email},phone = #{phone},id_card = #{idCard},name = #{name} where id = #{id};
     </update>
+
     <insert id="insertUser" >
         insert into tb_user (user_name,password,email,phone,id_card,name,vip) values (#{username},#{password},#{email},#{phone},#{idCard},#{name},'0');
     </insert>
+
+    <update id="addToken">
+        update tb_user set token = #{token} where user_name = #{username};
+    </update>
+
 </mapper>

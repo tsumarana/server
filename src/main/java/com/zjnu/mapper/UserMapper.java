@@ -33,6 +33,13 @@ public interface UserMapper {
     void alterUserInfo(User user);
 
     @ResultMap("userResultMap")
+    @Select(" select token,vip from tb_user where user_name = #{username}")
+    User selectTokenByUsername(User user);
+
+    @ResultMap("userResultMap")
+    void addToken(User user);
+
+    @ResultMap("userResultMap")
     @Select("select user_name from tb_user where id = #{id}")
     User selectUserById(User user);
 }

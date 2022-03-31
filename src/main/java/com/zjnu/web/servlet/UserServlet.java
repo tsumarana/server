@@ -20,18 +20,22 @@ import java.io.IOException;
 @WebServlet("/user/*")
 public class UserServlet extends BaseServlet{
     private UserService userService = new UserServiceImpl();
-    //查询用户
+    private GenerateToken generateToken = new GenerateToken();
+    //校验用户名密码生成token
     public void selectUser(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("utf-8");
         BufferedReader reader = req.getReader();
         String string = reader.readLine();
         LoginBean loginBean = new LoginBean();
+        String id = req.getSession().getId();
         User user = JSON.parseObject(string,User.class);
         User user1 = userService.selectUser(user);
         resp.setContentType("text/json;charset=utf-8");
         if(user1 != null ) {
             //生产token
-            String generate = new GenerateToken().generate(user1.getUsername(), user1.getVip());
+            String generate = generateToken.generate(id,user1.getUsername(), user1.getVip());
+            user1.setToken(generate);
+            userService.addToken(user1);
             //写数据
             if(user1.getVip().trim().equals("1")) {
                 loginBean.setRole("1011");
@@ -45,6 +49,27 @@ public class UserServlet extends BaseServlet{
         }
         String s = JSON.toJSONString(loginBean);
         resp.getWriter().write(s);
+    }
+    public void checkToken(HttpServletRequest req,HttpServletResponse resp) throws IOException{
+        req.setCharacterEncoding("utf-8");
+        String token = req.getHeader("Authorization");
+        resp.setContentType("text/json;charset=utf-8");
+        String verify = generateToken.verify(token).trim();
+
+        if(!verify.equals("")){
+            User user = new User();
+            user.setUsername(verify);
+            user = userService.selectTokenByUsername(user);
+            if(user.getToken().equals(token)){
+                if(user.getVip().equals("1")){
+                    resp.getWriter().write("201");
+                }else {
+                    resp.getWriter().write("200");
+                }
+            }
+        }else {
+            resp.getWriter().write("400");
+        }
     }
     //验证码校验
     public void selectUserByUserInfo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
