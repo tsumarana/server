@@ -33,16 +33,19 @@ public class UserServlet extends BaseServlet{
         resp.setContentType("text/json;charset=utf-8");
         if(user1 != null ) {
             //生产token
-            String generate = generateToken.generate(id,user1.getUsername(), user1.getVip());
+            String generate = generateToken.generate(id, String.valueOf(user1.getId()),user1.getUsername(), user1.getVip());
             user1.setToken(generate);
             userService.addToken(user1);
             //写数据
             if(user1.getVip().trim().equals("1")) {
                 loginBean.setRole("1011");
+
             }
             else{
                 loginBean.setRole("1012");
             }
+            loginBean.setUsername(user1.getUsername());
+            loginBean.setId(user1.getId());
             loginBean.setToken(generate);
         }else{
             loginBean.setRole("1013");
@@ -50,29 +53,13 @@ public class UserServlet extends BaseServlet{
         String s = JSON.toJSONString(loginBean);
         resp.getWriter().write(s);
     }
-    //检查token
-    public void checkToken(HttpServletRequest req,HttpServletResponse resp) throws IOException{
-        req.setCharacterEncoding("utf-8");
-        String token = req.getHeader("Authorization");
-        resp.setContentType("text/json;charset=utf-8");
-        String verify = generateToken.verify(token).trim();
 
-        if(!verify.equals("")){
-            User user = new User();
-            user.setUsername(verify);
-            user = userService.selectTokenByUsername(user);
-            if(user.getToken().equals(token)){
-                if(user.getVip().equals("1")){
-                    resp.getWriter().write("201");
-                }else {
-                    resp.getWriter().write("200");
-                }
-            }
-        }else {
-            resp.getWriter().write("400");
-        }
+    public void exit(HttpServletRequest req,HttpServletResponse resp) throws IOException{
+        req.setCharacterEncoding("utf-8");
+        String s = req.getReader().readLine();
+        User user = JSON.parseObject(s, User.class);
+        userService.cleanToken(user);
     }
-    //验证码校验
     public void selectUserByUserInfo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("utf-8");
         BufferedReader reader = req.getReader();

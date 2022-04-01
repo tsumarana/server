@@ -1,3 +1,4 @@
+com\zjnu\web\filter\Filter.class
 com\zjnu\servece\impl\MessageServiceImpl.class
 com\zjnu\servece\MessageService.class
 com\zjnu\web\servlet\AuthorizationServlet.class

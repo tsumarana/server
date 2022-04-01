@@ -9,10 +9,8 @@
         <result property="username" column="user_name"></result>
         <result property="idCard" column="id_card"></result>
     </resultMap>
+    <resultMap id="countResultMap"  type="java.lang.Integer" >
 
-    <resultMap id="countResultMap"  type="com.zjnu.pojo.User" >
-        <result property="username" column="user_name"></result>
-        <result property="idCard" column="id_card"></result>
     </resultMap>
 
     <select id="selectAll" resultMap="userResultMap">
@@ -24,8 +22,9 @@
     </select>
 
     <select id="selectByUsername" resultMap="userResultMap">
-        select img,user_name from tb_user where user_name= #{username};
+        select img,user_name,phone,email,id_card,name from tb_user where user_name= #{username};
     </select>
+
     <select id="selectUserByUserInfo" resultMap="userResultMap">
         select * from tb_user where user_name = #{username} or id_card = #{idCard} or phone = #{phone};
     </select>
@@ -52,7 +51,7 @@
         </where>
         limit #{begin},#{size}
     </select>
-    <select id="selectTotalCount"  resultMap="userResultMap">
+    <select id="selectTotalCount"  resultType="java.lang.Integer">
         select count(*) from tb_user
         <where>
             <if test="username !=null and username !=''">

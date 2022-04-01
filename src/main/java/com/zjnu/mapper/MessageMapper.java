@@ -14,6 +14,6 @@ public interface MessageMapper {
     List<Message> selectMessage(Message message);
 
     @ResultMap("messageResultMap")
-    @Insert("insert into tb_message values (null,#{fromName},#{toName},#{time},#{message})")
+    @Insert("insert into tb_message values (null,#{fromName},#{toName},#{time},#{message},1)")
     void addMessage(Message message);
 }

@@ -1,10 +1,36 @@
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import io.jsonwebtoken.*;
 import org.junit.Test;
 
+import javax.print.DocFlavor;
 import java.util.Date;
 import java.util.UUID;
 
 public class test {
+
+    @Test
+    public void test1(){
+        String auth1 = "{'/message/selectMessage': true,'/friend/selectList':'true','/message/addMessage':'true','/goods/addGoods':'true'}";
+        JSONObject jsonObject = JSON.parseObject(auth1);
+        String url = "/message/selectMessage";
+        if(jsonObject.get(url) != null){
+            Boolean  flag = (Boolean) jsonObject.get(url);
+            System.out.println(flag);
+            if(flag){
+                System.out.println("1111");
+            }
+        }else {
+            System.out.println("不存在");
+        }
+
+
+//        if(flag){
+//            System.out.println("为真");
+//        }
+        System.out.println(jsonObject.get(url));
+        System.out.println(jsonObject);
+    }
     private long time = 1000*60*60*24;
     private String signature = "lxh111";
     @Test

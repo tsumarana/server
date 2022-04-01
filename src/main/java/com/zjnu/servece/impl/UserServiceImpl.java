@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
             user.setName("%"+name+"%");
         }
         List<User> users = mapper.selectUserByPage(user,begin, size);
-        int count = mapper.selectTotalCount(user);
+        int count = mapper.selectTotalCount(user.getUsername(),user.getEmail(),user.getIdCard(),user.getName());
         PageBean<User> pageBean= new PageBean<User>();
         pageBean.setTotalCount(count);
         pageBean.setRows(users);
@@ -125,5 +125,14 @@ public class UserServiceImpl implements UserService {
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         User user1 = mapper.selectTokenByUsername(user);
         return user1;
+    }
+
+    @Override
+    public void cleanToken(User user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        mapper.cleanToken(user);
+        sqlSession.commit();
+        sqlSession.close();
     }
 }
