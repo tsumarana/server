@@ -8,5 +8,6 @@ import java.util.List;
 public interface FriendService {
     public User addFriend(User user);
     public List<Friend> selectAllByUser(Friend friend);
+    public  void  addFriend(Friend friend);
 
 }

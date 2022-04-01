@@ -5,6 +5,16 @@ public class Friend {
     private String username;
     private String friendname;
     private  String img;
+    private String myImg;
+
+    public String getMyImg() {
+        return myImg;
+    }
+
+    public void setMyImg(String myImg) {
+        this.myImg = myImg;
+    }
+
     private boolean status;
 
     public String getImg() {

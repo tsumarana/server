@@ -31,5 +31,12 @@ public class FriendServiceImpl implements FriendService {
         return friends;
     }
 
-
+    @Override
+    public void addFriend(Friend friend) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        FriendMapper mapper = sqlSession.getMapper(FriendMapper.class);
+        mapper.addFriend(friend);
+        sqlSession.commit();
+        sqlSession.close();
+    }
 }

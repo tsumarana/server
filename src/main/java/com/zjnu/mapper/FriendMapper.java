@@ -10,4 +10,8 @@ public interface FriendMapper {
     @ResultMap("friendResultMap")
     @Select("select friend_name,img from tb_friend where user_name = #{username}")
     List<Friend> selectAllByUser(Friend friend);
+
+    @ResultMap("friendResultMap")
+    @Insert("insert into tb_friend  values (null,#{friendname},1,#{username},#{img})")
+    void addFriend(Friend friend);
 }

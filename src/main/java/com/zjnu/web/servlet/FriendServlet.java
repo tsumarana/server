@@ -30,6 +30,7 @@ public class FriendServlet extends BaseServlet{
     }
     //获取所有用户好友关系列表
     public void selectList(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+        req.setCharacterEncoding("utf-8");
         String s = req.getReader().readLine();
         System.out.println(s);
         Friend friend = JSON.parseObject(s, Friend.class);
@@ -39,5 +40,17 @@ public class FriendServlet extends BaseServlet{
         resp.getWriter().write(jsonString);
     }
 
+    //添加好友
+    public void makeFriend(HttpServletRequest req,HttpServletResponse resp) throws IOException{
+        req.setCharacterEncoding("utf-8");
+        String s = req.getReader().readLine();
+        Friend friend = JSON.parseObject(s, Friend.class);
+        friendService.addFriend(friend);
+        String username = friend.getUsername();
+        friend.setUsername(friend.getFriendname());
+        friend.setFriendname(username);
+        friend.setImg(friend.getMyImg());
+        friendService.addFriend(friend);
+    }
 
 }
