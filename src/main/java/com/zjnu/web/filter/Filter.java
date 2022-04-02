@@ -74,7 +74,7 @@ public class Filter implements javax.servlet.Filter {
             }
         }
         String auth1 = "{'/message/selectMessage':true,'/friend/selectList':true,'/message/addMessage':true,'/goods/addGoods':true" +
-                ",'/user/selectUserByUsername':true}";
+                ",'/user/selectUserByUsername':true,'/friend/makeFriend':true}";
         JSONObject jsonObject1 = JSON.parseObject(auth1);
 //        String auth2 = "{'/user/selectUserByPage':true}";
         JSONObject jsonObject2 = JSON.parseObject(auth2);

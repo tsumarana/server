@@ -32,7 +32,5 @@ public class BaseServlet extends HttpServlet {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-
-
     }
 }
