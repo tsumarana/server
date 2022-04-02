@@ -18,4 +18,6 @@ public interface GoodsService {
     void addGoods(Goods goods);
 
     void deleteById(Goods goods);
+
+    void deleteBySeller(Goods goods);
 }

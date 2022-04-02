@@ -19,4 +19,31 @@ public class TrolleyServiceImpl implements TrolleyService {
         sqlSession.close();
         return trolleys;
     }
+
+    @Override
+    public void deleteTrolley(Trolley trolley) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        TrolleyMapper mapper = sqlSession.getMapper(TrolleyMapper.class);
+        mapper.deleteTrolley(trolley);
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Override
+    public void saveCount(Trolley trolley) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        TrolleyMapper mapper = sqlSession.getMapper(TrolleyMapper.class);
+        mapper.saveCount(trolley);
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Override
+    public void addTrolley(Trolley trolley) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        TrolleyMapper mapper = sqlSession.getMapper(TrolleyMapper.class);
+        mapper.addTrolley(trolley);
+        sqlSession.commit();
+        sqlSession.close();
+    }
 }

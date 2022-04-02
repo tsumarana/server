@@ -5,6 +5,15 @@ public class LoginBean {
     private String token;
     private String username;
     private int id;
+    private String img;
+
+    public LoginBean(String role, String token, String username, int id, String img) {
+        this.role = role;
+        this.token = token;
+        this.username = username;
+        this.id = id;
+        this.img = img;
+    }
 
     @Override
     public String toString() {
@@ -12,8 +21,17 @@ public class LoginBean {
                 "role='" + role + '\'' +
                 ", token='" + token + '\'' +
                 ", username='" + username + '\'' +
-                ", id='" + id + '\'' +
+                ", id=" + id +
+                ", img='" + img + '\'' +
                 '}';
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getUsername() {
@@ -37,6 +55,7 @@ public class LoginBean {
         this.token = token;
         this.username = username;
         this.id = id;
+
     }
 
     public LoginBean() {

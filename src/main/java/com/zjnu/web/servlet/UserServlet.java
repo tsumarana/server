@@ -47,6 +47,7 @@ public class UserServlet extends BaseServlet{
             loginBean.setUsername(user1.getUsername());
             loginBean.setId(user1.getId());
             loginBean.setToken(generate);
+            loginBean.setImg(user1.getImg());
         }else{
             loginBean.setRole("1013");
         }
@@ -60,6 +61,7 @@ public class UserServlet extends BaseServlet{
         User user = JSON.parseObject(s, User.class);
         userService.cleanToken(user);
     }
+
     public void selectUserByUserInfo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("utf-8");
         BufferedReader reader = req.getReader();
@@ -144,9 +146,7 @@ public class UserServlet extends BaseServlet{
     public void selectUserByUsername(HttpServletRequest req ,HttpServletResponse resp) throws IOException{
         req.setCharacterEncoding("utf-8");
         String s = req.getReader().readLine();
-        System.out.println(s);
         User user = JSON.parseObject(s, User.class);
-        System.out.println(user);
         User user1 = userService.selectUserByUsername(user);
         String jsonString = JSON.toJSONString(user1);
         resp.setContentType("text/json;charset=utf-8");
@@ -159,5 +159,13 @@ public class UserServlet extends BaseServlet{
         System.out.println(s);
         User user = JSON.parseObject(s, User.class);
         userService.alterUserInfo(user);
+    }
+
+    public void logoffUser(HttpServletRequest req,HttpServletResponse resp)throws IOException{
+        req.setCharacterEncoding("utf-8");
+        String s = req.getReader().readLine();
+        System.out.println(s);
+        User user = JSON.parseObject(s, User.class);
+        userService.logoffUser(user);
     }
 }

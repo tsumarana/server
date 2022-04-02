@@ -7,7 +7,7 @@ public class Trolley {
     private String count;
     private String price;
     private String username;
-
+    private String seller;
     public Trolley() {
     }
 
@@ -18,6 +18,37 @@ public class Trolley {
         this.count = count;
         this.price = price;
         this.username = username;
+    }
+
+    public Trolley(int id, int brandId, String name, String count, String price, String username, String seller) {
+        this.id = id;
+        this.brandId = brandId;
+        this.name = name;
+        this.count = count;
+        this.price = price;
+        this.username = username;
+        this.seller = seller;
+    }
+
+    public String getSeller() {
+        return seller;
+    }
+
+    @Override
+    public String toString() {
+        return "Trolley{" +
+                "id=" + id +
+                ", brandId=" + brandId +
+                ", name='" + name + '\'' +
+                ", count='" + count + '\'' +
+                ", price='" + price + '\'' +
+                ", username='" + username + '\'' +
+                ", seller='" + seller + '\'' +
+                '}';
+    }
+
+    public void setSeller(String seller) {
+        this.seller = seller;
     }
 
     public int getId() {
@@ -68,15 +99,4 @@ public class Trolley {
         this.username = username;
     }
 
-    @Override
-    public String toString() {
-        return "Trolley{" +
-                "id=" + id +
-                ", brandId=" + brandId +
-                ", name='" + name + '\'' +
-                ", count='" + count + '\'' +
-                ", price='" + price + '\'' +
-                ", username='" + username + '\'' +
-                '}';
-    }
 }

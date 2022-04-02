@@ -57,7 +57,7 @@ public class Filter implements javax.servlet.Filter {
 
         String s = req.getRequestURI().split("tomcat-demo1")[1];
         String str  =  req.getRequestURI();
-        String auth2="{'/user/selectUserByPage':true}";
+        String auth2="{'/user/selectUserByPage':true,'/user/logoffUser':true}";
         //过滤连接websoket的服务的连接
 //        if(s.equals("/websocket")){
 //            String token = req.getParameter("token");
@@ -70,11 +70,12 @@ public class Filter implements javax.servlet.Filter {
         if(s.equals("/goods/selectByPageAndCondition")){
             String id = String.valueOf(req.getParameter("id"));
             if(id!=null && id.equals("1")){
-                auth2 = "{'/user/selectUserByPage':true,'/goods/selectByPageAndCondition':true}";
+                auth2 = "{'/user/selectUserByPage':true,'/goods/selectByPageAndCondition':true,'/user/logoffUser':true}";
             }
         }
         String auth1 = "{'/message/selectMessage':true,'/friend/selectList':true,'/message/addMessage':true,'/goods/addGoods':true" +
-                ",'/user/selectUserByUsername':true,'/friend/makeFriend':true}";
+                ",'/user/selectUserByUsername':true,'/friend/makeFriend':true,'/trolley/selectTrolley':true,'/trolley/deleteTrolley':true" +
+                ",'/trolley/saveCount':true,'/trolley/addTrolley':true}";
         JSONObject jsonObject1 = JSON.parseObject(auth1);
 //        String auth2 = "{'/user/selectUserByPage':true}";
         JSONObject jsonObject2 = JSON.parseObject(auth2);

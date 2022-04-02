@@ -42,4 +42,7 @@ public interface UserMapper {
     @ResultMap("userResultMap")
     @Select("select user_name from tb_user where id = #{id}")
     User selectUserById(User user);
+
+    @Delete("delete from tb_user where id=#{id} ")
+    void logoffUser(User user);
 }

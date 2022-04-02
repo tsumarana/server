@@ -11,8 +11,48 @@ public class Goods {
     private String rank;
     private boolean adult;
     private String seller;
+    private String username;
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                ", grade=" + grade +
+                ", type='" + type + '\'' +
+                ", accountGrade=" + accountGrade +
+                ", decorate='" + decorate + '\'' +
+                ", rank='" + rank + '\'' +
+                ", adult=" + adult +
+                ", seller='" + seller + '\'' +
+                ", username='" + username + '\'' +
+                '}';
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public Goods() {
+    }
+
+    public Goods(Integer id, String title, Integer price, Integer grade, String type, Integer accountGrade, String decorate, String rank, boolean adult, String seller, String username) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.grade = grade;
+        this.type = type;
+        this.accountGrade = accountGrade;
+        this.decorate = decorate;
+        this.rank = rank;
+        this.adult = adult;
+        this.seller = seller;
+        this.username = username;
     }
 
     public Goods(Integer id, String title, Integer price, Integer grade, String type, Integer accountGrade, String decorate, String rank, boolean adult, String seller) {
@@ -108,19 +148,4 @@ public class Goods {
         this.seller = seller;
     }
 
-    @Override
-    public String toString() {
-        return "Goods{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", price=" + price +
-                ", grade=" + grade +
-                ", type='" + type + '\'' +
-                ", accountGrade=" + accountGrade +
-                ", decorate='" + decorate + '\'' +
-                ", rank='" + rank + '\'' +
-                ", adult=" + adult +
-                ", seller='" + seller + '\'' +
-                '}';
-    }
 }

@@ -94,5 +94,14 @@ public class GoodsServiceImpl implements GoodsService {
         sqlSession.close();
     }
 
+    @Override
+    public void deleteBySeller(Goods goods) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        GoodsMapper mapper = sqlSession.getMapper(GoodsMapper.class);
+        mapper.deleteBySeller(goods);
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
 
 }

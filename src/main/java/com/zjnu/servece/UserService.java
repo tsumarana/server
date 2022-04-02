@@ -15,4 +15,5 @@ public interface UserService {
     void addToken(User user);
     User selectTokenByUsername(User user);
     void cleanToken(User user);
+    void logoffUser(User user);
 }

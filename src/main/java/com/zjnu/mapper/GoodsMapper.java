@@ -32,7 +32,9 @@ public interface GoodsMapper {
     //数目查询
     @Select("select count(*) from tb_goods")
     int selectTotalCount();
-
+    //根据用户名删除
+    @Delete("delete from tb_goods where seller = #{seller}")
+    void deleteBySeller(Goods goods);
     //分页条件查询
     @ResultMap("goodsResultMap")
     List<Goods> selectByPageAndCondition(@Param("begin") int begin,@Param("size") int size,@Param("goods") Goods goods);

@@ -135,4 +135,13 @@ public class UserServiceImpl implements UserService {
         sqlSession.commit();
         sqlSession.close();
     }
+
+    @Override
+    public void logoffUser(User user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        mapper.logoffUser(user);
+        sqlSession.commit();
+        sqlSession.close();
+    }
 }

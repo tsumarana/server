@@ -1,4 +1,6 @@
+com\zjnu\web\servlet\OrderServlet.class
 com\zjnu\servece\impl\MessageServiceImpl.class
+com\zjnu\servece\impl\OrderServiceImpl.class
 com\zjnu\web\servlet\AuthorizationServlet.class
 com\zjnu\servece\impl\TrolleyServiceImpl.class
 com\zjnu\pojo\Trolley.class
@@ -9,6 +11,9 @@ com\zjnu\web\filter\Filter.class
 com\zjnu\mapper\TrolleyMapper.class
 com\zjnu\servece\MessageService.class
 com\zjnu\web\servlet\TrolleyServlet.class
+com\zjnu\pojo\Order.class
+com\zjnu\mapper\OrderMapper.class
+com\zjnu\servece\OrderService.class
 com\zjnu\util\GenerateToken.class
 com\zjnu\pojo\LoginBean.class
 com\zjnu\mapper\MessageMapper.class
